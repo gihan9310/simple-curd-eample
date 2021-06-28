@@ -1,14 +1,14 @@
 package com.gihanz.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -20,17 +20,30 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Student name is required")
+    @NotBlank(message = "Student name is required.")
     private String name;
-    @NotBlank(message = "Student initials is required")
+    @NotBlank(message = "Student initials is required.")
     private String initials;
-    @NotBlank(message = "Student last name is required")
+    @NotBlank(message = "Student last name is required.")
     private String lastName;
-    @NotBlank(message = "Student dob is required")
+//    @NotNull(message = "Student dob is required.")
     private LocalDate dob;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "project")
-//    @JsonIgnore
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "student",cascade = CascadeType.ALL)
+    @Valid
     private StudentContact studentContact;
+
+
+    @PrePersist
+    protected void onCreate(){
+        this.created_at=  LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updated_at=  LocalDateTime.now();
+    }
 
 }

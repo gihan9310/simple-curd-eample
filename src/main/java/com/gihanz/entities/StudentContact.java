@@ -20,15 +20,15 @@ public class StudentContact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Student lastName is required")
-    @Size(max = 10,min = 10,message = "")
-    @NotBlank(message = "Student mobileNumber is required")
+    @NotBlank(message = "Student lastName is required.")
+    @Size(max = 10,min = 10,message = "Invalid phone number.")
+    @NotBlank(message = "Student mobileNumber is required.")
     private String mobileNumber;
-    @NotBlank(message = "Student address lastName is required")
+    @NotBlank(message = "Student address lastName is required.")
     private String address;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "studentId",nullable = false)
+    @JoinColumn(name = "studentId",referencedColumnName = "id")
     @JsonIgnore
     private Student student;
 
