@@ -2,34 +2,38 @@ package com.gihanz.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gihanz.models.StudentContactDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "STUDENTS")
+@Table(name = "CONTACTS")
 public class StudentContact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Student lastName is required.")
-    @Size(max = 10,min = 10,message = "Invalid phone number.")
-    @NotBlank(message = "Student mobileNumber is required.")
     private String mobileNumber;
-    @NotBlank(message = "Student address lastName is required.")
     private String address;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "studentId",referencedColumnName = "id")
     @JsonIgnore
     private Student student;
+
+
+    @JsonIgnore
+    public StudentContactDTO getDto(){
+        StudentContactDTO student = new StudentContactDTO();
+        BeanUtils.copyProperties(this,student);
+        return student;
+    }
 
 }
