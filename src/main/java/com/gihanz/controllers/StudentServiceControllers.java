@@ -1,6 +1,5 @@
 package com.gihanz.controllers;
 
-import com.gihanz.entities.Student;
 import com.gihanz.models.StudentDTO;
 import com.gihanz.services.StudentService;
 import com.gihanz.utils.BindingErrorsResponse;

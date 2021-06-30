@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +24,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(length = 12,unique = true,nullable = false)
+    private String nic;
     private String initials;
     private String lastName;
     private LocalDate dob;
@@ -31,6 +35,8 @@ public class Student {
     @OneToOne(fetch = FetchType.EAGER,mappedBy = "student",cascade = CascadeType.ALL)
     private StudentContact studentContact;
 
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "student",cascade = CascadeType.REFRESH,orphanRemoval = true)
+    List<BatchStudent> batchStudents;
 
     @PrePersist
     @JsonIgnore
