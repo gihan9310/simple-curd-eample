@@ -8,15 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "DEGREE_BATCHES")
-public class Batch {
-
+public class Batch implements BaseClass{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,8 +39,11 @@ public class Batch {
     @JsonIgnore
     private Degree degree;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "batch",cascade = CascadeType.REFRESH,orphanRemoval = true)
-    List<BatchStudent> batchStudents;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "batch",cascade = CascadeType.REFRESH,orphanRemoval = true)
+    Set<Semester> semesters;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "batch",cascade = CascadeType.REFRESH,orphanRemoval = true)
+    Set<BatchStudent> batchStudents;
 
     @PrePersist
     @JsonIgnore

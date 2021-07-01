@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SUBJECTS")
-public class Subject {
+public class Subject implements BaseClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

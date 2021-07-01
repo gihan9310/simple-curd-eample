@@ -7,31 +7,34 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "DEGRIES")
-public class Degree implements BaseClass{
+@Table(name = "SEMESTERS")
+public class Semester implements BaseClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String degreeCode;
-    private String degreeName;
-    private String infoUrl;
-    private String Description;
+    private int semester;
+    private String semesterCode;
+    private Double semesterFee;
+    private Double discount ;
+    private Double examFee;
+    private Double repeatExamFeeForSubject;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy = "degree",cascade = CascadeType.ALL)
-    private Duration duration;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batchId",updatable = false,nullable = false)
+    @JsonIgnore
+    private Batch batch;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "degree",cascade = CascadeType.REFRESH,orphanRemoval = true)
-    private Set<Batch> batches;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "semester",cascade = CascadeType.REFRESH,orphanRemoval = true)
+    Set<BatchSemesterStudentPayment> semesterStudentPayments;
 
     @PrePersist
     @JsonIgnore
@@ -44,5 +47,4 @@ public class Degree implements BaseClass{
     protected void onUpdate(){
         this.updated_at=  LocalDateTime.now();
     }
-
 }

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "DEGREE_DUERATIONS")
-public class Duration {
+public class Duration implements BaseClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

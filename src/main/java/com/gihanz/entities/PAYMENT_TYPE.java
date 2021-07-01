@@ -1,0 +1,12 @@
+package com.gihanz.entities;
+
+public enum PAYMENT_TYPE {
+    REGISTRAION_FEE,
+    EXAM_FEE,
+    INSTROLLMETS,
+    RECECHK_RESULTS,
+    RE_TAKE_SEMESTER_SUBJECTS,
+    FULL_PAYMENT,
+    LATE_SUBMITION_FEE
+
+}

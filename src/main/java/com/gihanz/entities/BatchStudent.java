@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "BATCH_STUENTS")
-public class BatchStudent {
+public class BatchStudent implements BaseClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

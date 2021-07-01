@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "CONTACTS")
-public class StudentContact {
+public class StudentContact implements BaseClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
