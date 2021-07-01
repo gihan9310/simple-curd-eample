@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentContactDTO {
+public class StudentContactDTO implements BaseClassDTO{
 
     private Long id;
     @NotBlank(message = "Student lastName is required.")

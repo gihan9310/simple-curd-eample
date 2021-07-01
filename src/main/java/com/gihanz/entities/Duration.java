@@ -1,9 +1,11 @@
 package com.gihanz.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gihanz.models.DurationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -42,4 +44,12 @@ public class Duration implements BaseClass{
     protected void onUpdate(){
         this.updated_at=  LocalDateTime.now();
     }
+
+    @JsonIgnore
+    public DurationDTO getDto(){
+        DurationDTO dto = new DurationDTO();
+        BeanUtils.copyProperties(this,dto);
+        return dto ;
+    }
+
 }

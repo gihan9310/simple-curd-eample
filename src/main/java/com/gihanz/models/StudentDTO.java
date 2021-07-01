@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentDTO {
+public class StudentDTO implements BaseClassDTO{
 
     private Long id;
     @NotBlank(message = "Student name is required.")

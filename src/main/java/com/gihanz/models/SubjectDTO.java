@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectDTO {
+public class SubjectDTO implements BaseClassDTO{
 
     Long id ;
     @NotBlank(message = "Subject code required")
@@ -22,8 +22,5 @@ public class SubjectDTO {
     private double cridit;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-
-
-
 
 }

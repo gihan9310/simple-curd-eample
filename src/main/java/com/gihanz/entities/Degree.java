@@ -1,9 +1,12 @@
 package com.gihanz.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gihanz.models.DegreeDTO;
+import com.gihanz.models.StudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -43,6 +46,15 @@ public class Degree implements BaseClass{
     @JsonIgnore
     protected void onUpdate(){
         this.updated_at=  LocalDateTime.now();
+    }
+
+
+    @JsonIgnore
+    public DegreeDTO getDto(){
+        DegreeDTO dto = new DegreeDTO();
+        BeanUtils.copyProperties(this,dto);
+        dto.setDuration(this.duration==null?null:this.duration.getDto());
+        return dto ;
     }
 
 }
