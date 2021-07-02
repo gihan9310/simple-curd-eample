@@ -19,8 +19,8 @@ public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandl
     }
 
     @ExceptionHandler
-    public final ResponseEntity<Object> ProjectCreationException(StudentException exception , WebRequest request){
-        ProjectCreationException response = new ProjectCreationException(exception.getMessage());
+    public final ResponseEntity<Object> ProjectCreationException(ProjectCreationException exception , WebRequest request){
+        StudentExceptionResponse response = new StudentExceptionResponse(exception.getMessage());
         return  new ResponseEntity(response, HttpStatus.BAD_REQUEST);
     }
 

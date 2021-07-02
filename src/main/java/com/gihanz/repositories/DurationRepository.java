@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DurationRepository extends JpaRepository<Duration,Long> {
+    Duration findByDegree_Id(Long id);
 }

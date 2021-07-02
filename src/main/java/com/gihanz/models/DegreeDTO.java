@@ -32,7 +32,7 @@ public class DegreeDTO implements BaseClassDTO {
     public Degree getEntity(){
         Degree entity = new Degree();
         BeanUtils.copyProperties(this,entity);
-        entity.setDuration(this.duration==null ?null :this.duration.getDto());
+        entity.setDuration(this.duration==null ?null :this.duration.getEntity());
         return entity ;
     }
 }

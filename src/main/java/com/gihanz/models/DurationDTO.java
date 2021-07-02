@@ -23,7 +23,7 @@ public class DurationDTO implements BaseClassDTO{
     private LocalDateTime updated_at;
     private DegreeDTO degree;
     @JsonIgnore
-    public Duration getDto(){
+    public Duration getEntity(){
         Duration entity = new Duration();
         BeanUtils.copyProperties(this,entity);
         return entity ;

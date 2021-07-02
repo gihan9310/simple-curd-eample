@@ -36,11 +36,11 @@ public class DegreeServiceController {
 
     }
 
-    @PostMapping(value = "/findAll",consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/findAll" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll(){
 
         List<DegreeDTO> result = degreeService.findAll();
-        log.info("SAVED..........");
+        log.info("Find All");
         return new ResponseEntity(result, HttpStatus.OK);
 
     }

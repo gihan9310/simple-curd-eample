@@ -54,6 +54,7 @@ public class Degree implements BaseClass{
         DegreeDTO dto = new DegreeDTO();
         BeanUtils.copyProperties(this,dto);
         dto.setDuration(this.duration==null?null:this.duration.getDto());
+        if(duration!=null) duration.setDegree(this);
         return dto ;
     }
 
